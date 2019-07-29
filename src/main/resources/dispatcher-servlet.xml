@@ -34,4 +34,7 @@
 
     <bean id="GlobleExceptionHandler" class="handler.GlobleExceptionHandler"></bean>
 
+    <bean class="config.SwaggerConfig"/>
+
+    <mvc:resources mapping="/swagger/**" location="/swagger/"/>
 </beans>

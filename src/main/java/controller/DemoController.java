@@ -2,12 +2,11 @@ package controller;
 
 
 import dao.CinemaMapper;
-import exception.ParameterException;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import pojo.entity.Cinema;
 
@@ -17,12 +16,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/demo")
 @Slf4j
+@Api
 public class DemoController {
 
 
     @Resource
     private CinemaMapper cinemaMapper;
 
+    @ApiOperation(value = "demo")
     @GetMapping("/aa.dos")
     public List<Cinema> getCinema(){
 
