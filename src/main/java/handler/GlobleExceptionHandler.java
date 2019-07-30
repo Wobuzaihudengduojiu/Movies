@@ -30,16 +30,16 @@ public class GlobleExceptionHandler {
     }
 
 
-    @ExceptionHandler(value = {Exception.class})
-    public ResultVO<Object> defaultExceptionHandler(HttpServletRequest request, Exception exception) {
-
-        log.info("默认异常处理");
-        ResultVO<Object> errorInfo = new ResultVO<>();
-        errorInfo.setMsg(exception.getMessage());
-        errorInfo.setUrl(request.getRequestURI());
-        log.info("默认异常处理信息：{}", errorInfo.toString());
-        return errorInfo;
-    }
+//    @ExceptionHandler(value = {Exception.class})
+//    public ResultVO<Object> defaultExceptionHandler(HttpServletRequest request, Exception exception) {
+//
+//        log.info("默认异常处理");
+//        ResultVO<Object> errorInfo = new ResultVO<>();
+//        errorInfo.setMsg(exception.getMessage());
+//        errorInfo.setUrl(request.getRequestURI());
+//        log.info("默认异常处理信息：{}", errorInfo.toString());
+//        return errorInfo;
+//    }
 
 
 }

@@ -1,23 +1,16 @@
-package pojo.entity;
+package pojo.VO;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.Date;
 
-
-@Builder
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class User {
+@ToString
+public class UserVO {
     private Integer userid;
 
     private String userName;
-
-    private String userPwd;
 
     private String userEmail;
 
@@ -26,5 +19,4 @@ public class User {
     private Date creatTime;
 
     private Date updateTime;
-
 }

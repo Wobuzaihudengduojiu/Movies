@@ -2,6 +2,7 @@ package controller;
 
 
 import dao.CinemaMapper;
+import exception.ParameterException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -29,9 +30,9 @@ public class DemoController {
 
         log.info("Cinema:{}",cinemaMapper.selectAll());
 
-//        if(true){
-//            throw new ParameterException("参数解析错误");
-//        }
+        if(true){
+            throw new ParameterException("参数解析错误");
+        }
 
         return cinemaMapper.insert(null)>0;
     }

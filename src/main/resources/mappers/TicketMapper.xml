@@ -59,4 +59,33 @@
     from ticket
     where user_id=#{userid,jdbcType=INTEGER}
   </select>
+
+  <update id="updateStatusByTkIds" parameterType="java.util.List">
+    update ticket
+    set tk_status=1
+    where tk_id in
+    <foreach collection="tkIds" item="p" open="(" close=")" separator=",">
+      #{p,jdbcType=INTEGER}
+    </foreach>
+
+  </update>
+
+  <insert id="insertTickets" parameterType="java.util.List">
+  insert into ticket (tk_id, tk_status, dict_seat,
+      dict_hall, dict_start_time, dick_end_time,
+      cine_address, user_id, creat_time,
+      update_time, mov_id)
+  values
+  <foreach collection="tickets" item="p" open="(" separator="," close=")">
+    (
+    #{p.tkId,jdbcType=INTEGER}, #{p.tkStatus,jdbcType=INTEGER}, #{p.dictSeat,jdbcType=VARCHAR},
+    #{p.dictHall,jdbcType=VARCHAR}, #{p.dictStartTime,jdbcType=TIMESTAMP}, #{p.dickEndTime,jdbcType=TIMESTAMP},
+    #{p.cineAddress,jdbcType=VARCHAR}, #{p.userId,jdbcType=INTEGER}, #{p.creatTime,jdbcType=TIMESTAMP},
+    #{p.movId,jdbcType=INTEGER}
+    )
+
+  </foreach>
+
+
+  </insert>
 </mapper>
