@@ -1,7 +1,17 @@
 package pojo.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
+
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Ticket {
     private Integer tkId;
 
@@ -9,9 +19,11 @@ public class Ticket {
 
     private String dictSeat;
 
-    private Integer dictHall;
+    private String dictHall;
 
-    private String dictStartTime;
+    private Date dictStartTime;
+
+    private Date dickEndTime;
 
     private String cineAddress;
 
@@ -21,75 +33,7 @@ public class Ticket {
 
     private Date updateTime;
 
-    public Integer getTkId() {
-        return tkId;
-    }
+    private Integer movId;
 
-    public void setTkId(Integer tkId) {
-        this.tkId = tkId;
-    }
 
-    public Integer getTkStatus() {
-        return tkStatus;
-    }
-
-    public void setTkStatus(Integer tkStatus) {
-        this.tkStatus = tkStatus;
-    }
-
-    public String getDictSeat() {
-        return dictSeat;
-    }
-
-    public void setDictSeat(String dictSeat) {
-        this.dictSeat = dictSeat == null ? null : dictSeat.trim();
-    }
-
-    public Integer getDictHall() {
-        return dictHall;
-    }
-
-    public void setDictHall(Integer dictHall) {
-        this.dictHall = dictHall;
-    }
-
-    public String getDictStartTime() {
-        return dictStartTime;
-    }
-
-    public void setDictStartTime(String dictStartTime) {
-        this.dictStartTime = dictStartTime == null ? null : dictStartTime.trim();
-    }
-
-    public String getCineAddress() {
-        return cineAddress;
-    }
-
-    public void setCineAddress(String cineAddress) {
-        this.cineAddress = cineAddress == null ? null : cineAddress.trim();
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Date getCreatTime() {
-        return creatTime;
-    }
-
-    public void setCreatTime(Date creatTime) {
-        this.creatTime = creatTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 }

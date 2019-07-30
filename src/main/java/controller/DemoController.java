@@ -25,7 +25,7 @@ public class DemoController {
 
     @ApiOperation(value = "demo")
     @GetMapping("/aa.dos")
-    public List<Cinema> getCinema(){
+    public Boolean getCinema(){
 
         log.info("Cinema:{}",cinemaMapper.selectAll());
 
@@ -33,7 +33,7 @@ public class DemoController {
 //            throw new ParameterException("参数解析错误");
 //        }
 
-        return cinemaMapper.selectAll();
+        return cinemaMapper.insert(null)>0;
     }
 
 }

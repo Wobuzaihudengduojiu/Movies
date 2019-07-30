@@ -1,8 +1,18 @@
 package pojo.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Dictionary {
     private Integer dictId;
 
@@ -24,83 +34,5 @@ public class Dictionary {
 
     private Date updateTime;
 
-    public Integer getDictId() {
-        return dictId;
-    }
 
-    public void setDictId(Integer dictId) {
-        this.dictId = dictId;
-    }
-
-    public Integer getMovId() {
-        return movId;
-    }
-
-    public void setMovId(Integer movId) {
-        this.movId = movId;
-    }
-
-    public Integer getCineId() {
-        return cineId;
-    }
-
-    public void setCineId(Integer cineId) {
-        this.cineId = cineId;
-    }
-
-    public Date getDictStartTime() {
-        return dictStartTime;
-    }
-
-    public void setDictStartTime(Date dictStartTime) {
-        this.dictStartTime = dictStartTime;
-    }
-
-    public Date getDictEndTime() {
-        return dictEndTime;
-    }
-
-    public void setDictEndTime(Date dictEndTime) {
-        this.dictEndTime = dictEndTime;
-    }
-
-    public Integer getDictHall() {
-        return dictHall;
-    }
-
-    public void setDictHall(Integer dictHall) {
-        this.dictHall = dictHall;
-    }
-
-    public BigDecimal getDictPrice() {
-        return dictPrice;
-    }
-
-    public void setDictPrice(BigDecimal dictPrice) {
-        this.dictPrice = dictPrice;
-    }
-
-    public String getDictSeat() {
-        return dictSeat;
-    }
-
-    public void setDictSeat(String dictSeat) {
-        this.dictSeat = dictSeat == null ? null : dictSeat.trim();
-    }
-
-    public Date getCreatTime() {
-        return creatTime;
-    }
-
-    public void setCreatTime(Date creatTime) {
-        this.creatTime = creatTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 }

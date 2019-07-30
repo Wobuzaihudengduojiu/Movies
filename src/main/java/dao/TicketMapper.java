@@ -13,4 +13,6 @@ public interface TicketMapper {
     List<Ticket> selectAll();
 
     int updateByPrimaryKey(Ticket record);
+
+    List<Ticket> selectByUserId(Integer userid);
 }

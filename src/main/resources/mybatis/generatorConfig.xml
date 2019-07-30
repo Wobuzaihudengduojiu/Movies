@@ -42,7 +42,7 @@
             <domainObjectRenamingRule searchString="^" replaceString=""/>
         </table>
 
-        <table tableName="movies">
+        <table tableName="movie">
             <domainObjectRenamingRule searchString="^" replaceString=""/>
         </table>
         <table tableName="cinema">
