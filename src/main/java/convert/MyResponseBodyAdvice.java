@@ -9,6 +9,7 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import pojo.VO.ResultVO;
+import util.ResultVOUtil;
 
 @Slf4j
 @RestControllerAdvice(basePackages = {"controller"})
@@ -36,22 +37,12 @@ public class MyResponseBodyAdvice implements ResponseBodyAdvice {
      */
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-        if (body == null) {
-            return body;
-        } else if (body instanceof ResultVO) {
-            ResultVO restResult = new ResultVO<>();
-            restResult.setCode(-1);
-            restResult.setMsg("出现异常");
-            restResult.setData(body);
-            return body;
-        } else if(body instanceof  String){
-            return body;
-        } else {
-            ResultVO restResult = new ResultVO<>();
-            restResult.setCode(200);
-            restResult.setData(body);
-            body = restResult;
+        if(body instanceof String){
+            return ResultVOUtil.success(body);
+        }
+        if(body instanceof ResultVO){
             return body;
         }
+        return ResultVOUtil.success(body);
     }
 }

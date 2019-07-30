@@ -41,4 +41,7 @@
     select userid, user_name, user_pwd, user_email, user_class, creat_time, update_time
     from user
   </select>
+  <select id="login" resultType="pojo.entity.User" >
+    select * from user where user_email=#{email,jdbcType=VARCHAR} and user_pwd=#{password,jdbcType=VARCHAR}
+  </select>
 </mapper>
