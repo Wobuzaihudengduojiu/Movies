@@ -34,5 +34,4 @@ public class Dictionary {
 
     private Date updateTime;
 
-
 }

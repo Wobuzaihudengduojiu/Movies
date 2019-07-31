@@ -13,4 +13,6 @@ public interface CommentMapper {
     List<Comment> selectAll();
 
     int updateByPrimaryKey(Comment record);
+    
+    List<Comment> selectCommentByMovId(@Param("mov_id")Integer mov_id);
 }

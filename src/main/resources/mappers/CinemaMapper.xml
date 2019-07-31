@@ -45,4 +45,12 @@
     update_time
     from cinema
   </select>
+  
+	<!-- 自定义sql -->
+
+  <!-- 根据电影查找电影院(需要 电影id)-->
+  <select id="selectCinemaByMovie" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+  	select c.* from cinema as c,dictionary as d where d.mov_id = #{mov_id} GROUP BY c.cine_id
+  </select>
+  
 </mapper>

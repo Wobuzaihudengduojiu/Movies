@@ -39,4 +39,12 @@
     select com_id, user_id, mov_id, com_content, creat_time, update_time
     from comment
   </select>
+  
+  
+  <!-- 自定义sql -->
+  <!-- 查看某一电影的所有评论 -->
+  <select id="selectCommentByMovId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select * from comment where mov_id = #{mov_id}
+  </select>
+  
 </mapper>

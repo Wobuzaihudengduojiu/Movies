@@ -71,4 +71,34 @@
     mov_area, creat_time, update_time
     from movie
   </select>
+  
+  <!-- 自定义sql -->
+  
+  
+  <!-- 查找正在热映-->
+  <select id="selectMovieByHot" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select * from movie where mov_is_hot = #{status}
+  </select>
+  
+  <!-- 查找即将上映-->
+  <select id="selectMovieByCome" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select * from movie where mov_is_come = #{status}
+  </select>
+
+  
+  <!-- 根据电影名称搜索电影(需要 电影名称) -->
+  <select id="selectMovieByMov_name" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from movie where mov_name like concat('%',#{mov_name,jdbcType=VARCHAR},'%')
+  </select>
+  
+  <!--  根据地区筛选电影(需要 地区) -->
+  <select id="selectMovieByMov_area" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from movie where mov_area = #{mov_area}
+  </select>
+  
+  <!-- 根据电影院查询所有的电影 -->
+  <select id="selectMovieByCinema" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select m.* from movie m,dictionary d where d.cine_id = #{cine_id} and m.mov_id = d.mov_id GROUP BY m.mov_id
+  </select>
+  
 </mapper>

@@ -1,16 +1,16 @@
 package pojo.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.Date;
 
-@Builder
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Movie {
     private Integer movId;
 
@@ -45,6 +45,9 @@ public class Movie {
     private Date creatTime;
 
     private Date updateTime;
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 85c1e1886c6bbd026b6dbf5089741a88bdd58139
 }

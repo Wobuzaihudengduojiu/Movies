@@ -25,5 +25,4 @@ public class Comment {
 
     private Date updateTime;
 
-
 }

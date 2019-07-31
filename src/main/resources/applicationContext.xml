@@ -32,6 +32,7 @@
 
     <bean id="MyResponseBodyAdvice" class="convert.MyResponseBodyAdvice"></bean>
 
+
     <!--swagger-->
     <bean class="config.SwaggerConfig"/>
 
