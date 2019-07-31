@@ -6,7 +6,7 @@
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url"  value="jdbc:mysql://39.105.20.143:3306/movies?useUnicode=true&amp;characterEncoding=utf8"/>
+        <property name="url"  value="jdbc:mysql://39.105.20.143:3306/movies?useUnicode=true&amp;characterEncoding=UTF-8"/>
         <property name="username" value="root"/>
         <property name="password" value="990727"/>
         <property name="maxTotal" value="255"/>

@@ -2,7 +2,7 @@ package controller;
 
 
 import dao.CinemaMapper;
-import dao.MovieMapper;
+import exception.ParameterException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.models.auth.In;
@@ -21,10 +21,6 @@ import java.util.List;
 @Api
 public class DemoController {
 
-    @Autowired
-    private MovieMapper movieMapper;
-
-
 
     @Resource
     private CinemaMapper cinemaMapper;
@@ -35,9 +31,9 @@ public class DemoController {
 
         log.info("Cinema:{}",cinemaMapper.selectAll());
 
-//        if(true){
-//            throw new ParameterException("参数解析错误");
-//        }
+        if(true){
+            throw new ParameterException("参数解析错误");
+        }
 
         return cinemaMapper.insert(null)>0;
     }

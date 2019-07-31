@@ -1,5 +1,6 @@
 package pojo.entity;
 
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel (value = "电影院实体类")
 public class Cinema {
     private Integer cineId;
 
