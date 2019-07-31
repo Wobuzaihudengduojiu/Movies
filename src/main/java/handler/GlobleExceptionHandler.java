@@ -31,15 +31,15 @@ public class GlobleExceptionHandler {
     }
 
 
-    @ExceptionHandler(value = {Exception.class})
-    public ResultVO defaultExceptionHandler(HttpServletRequest request, Exception exception) {
-
-        log.info("默认异常处理");
-        ResultVO errorInfo = ResultVOUtil.error(-1, exception.getMessage());
-        errorInfo.setUrl(request.getRequestURI());
-        log.info("默认异常处理信息：{}", errorInfo.toString());
-        return errorInfo;
-    }
+//    @ExceptionHandler(value = {Exception.class})
+//    public ResultVO defaultExceptionHandler(HttpServletRequest request, Exception exception) {
+//
+//        log.info("默认异常处理");
+//        ResultVO errorInfo = ResultVOUtil.error(-1, exception.getMessage());
+//        errorInfo.setUrl(request.getRequestURI());
+//        log.info("默认异常处理信息：{}", errorInfo.toString());
+//        return errorInfo;
+//    }
 
     /**
      * 本系统自定义错误的拦截器

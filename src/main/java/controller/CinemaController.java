@@ -29,7 +29,6 @@ public class CinemaController {
     public List<Cinema> selectAllCinemas(){
 
         return  cinemaService.selectAllCinema();
-
     }
 
 

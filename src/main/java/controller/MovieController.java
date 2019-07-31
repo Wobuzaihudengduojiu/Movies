@@ -55,7 +55,11 @@ public class MovieController {
 		
 		return movieService.selectDetailMovieInfo(mov_id);
 	}
-	
+
+	/**
+	 *  该方法在CommentController中
+	 */
+	@Deprecated()
 	@ApiOperation(value = "对电影进行评论(需要 用户id,电影id,评论内容)")
     @GetMapping("/insertCommentToMovie.do")
 	public Boolean insertCommentToMovie(
@@ -70,8 +74,6 @@ public class MovieController {
     @GetMapping("/selectMovieByMov_name.do")
 	public List<Movie> selectMovieByMov_name(@ApiParam(value="电影名字  movName") @RequestParam(name="movName") String mov_name){
 		
-		System.out.println(mov_name);
-		System.out.println(movieService.selectMovieByMov_name(mov_name));
 		return movieService.selectMovieByMov_name(mov_name);
 	}
 	

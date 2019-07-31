@@ -73,15 +73,13 @@
   <insert id="insertTickets" parameterType="java.util.List">
   insert into ticket (tk_id, tk_status, dict_seat,
       dict_hall, dict_start_time, dick_end_time,
-      cine_address, user_id, creat_time,
-      update_time, mov_id)
+      cine_address, user_id,  mov_id)
   values
-  <foreach collection="tickets" item="p" open="(" separator="," close=")">
+  <foreach collection="tickets" item="p" separator=",">
     (
     #{p.tkId,jdbcType=INTEGER}, #{p.tkStatus,jdbcType=INTEGER}, #{p.dictSeat,jdbcType=VARCHAR},
     #{p.dictHall,jdbcType=VARCHAR}, #{p.dictStartTime,jdbcType=TIMESTAMP}, #{p.dickEndTime,jdbcType=TIMESTAMP},
-    #{p.cineAddress,jdbcType=VARCHAR}, #{p.userId,jdbcType=INTEGER}, #{p.creatTime,jdbcType=TIMESTAMP},
-    #{p.movId,jdbcType=INTEGER}
+    #{p.cineAddress,jdbcType=VARCHAR}, #{p.userId,jdbcType=INTEGER}, #{p.movId,jdbcType=INTEGER}
     )
 
   </foreach>
