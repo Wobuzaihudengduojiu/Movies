@@ -2,10 +2,12 @@ package controller;
 
 
 import dao.CinemaMapper;
+import dao.MovieMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pojo.VO.ResultVO;
 import pojo.entity.Cinema;
@@ -18,6 +20,10 @@ import java.util.List;
 @Slf4j
 @Api
 public class DemoController {
+
+    @Autowired
+    private MovieMapper movieMapper;
+
 
 
     @Resource
