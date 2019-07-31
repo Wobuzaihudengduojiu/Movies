@@ -32,7 +32,6 @@ public class MovieController {
 	@ApiOperation(value = "根据电影查找电影院(需要 电影id)")
     @GetMapping("/selectCinemaByMovie.do")
 	public List<Cinema> selectCinemaByMovie(@ApiParam(value="电影id  movId") @RequestParam(name="movId") int mov_id){
-		System.out.println(movieService.selectCinemaByMovie(mov_id));
 		return movieService.selectCinemaByMovie(mov_id);
 	}
 	

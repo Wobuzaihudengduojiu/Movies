@@ -73,8 +73,6 @@
   </select>
   
   <!-- 自定义sql -->
-  
-  
   <!-- 查找正在热映-->
   <select id="selectMovieByHot" parameterType="java.lang.Integer" resultMap="BaseResultMap">
   	select * from movie where mov_is_hot = #{status}

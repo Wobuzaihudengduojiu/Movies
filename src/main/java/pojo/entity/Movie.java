@@ -45,9 +45,6 @@ public class Movie {
     private Date creatTime;
 
     private Date updateTime;
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 85c1e1886c6bbd026b6dbf5089741a88bdd58139
 }

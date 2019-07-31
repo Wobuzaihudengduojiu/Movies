@@ -4,10 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.junit.runner.RunWith;
 import org.springframework.stereotype.Service;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import dao.CinemaMapper;
 import dao.CommentMapper;
@@ -21,8 +18,8 @@ import service.MovieService;
 @Service
 //@SpringBootApplication(junit测试时用)
 //@WebAppConfiguration
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:applicationContext.xml")
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration("classpath:applicationContext.xml")
 public class MovieServiceImpl implements MovieService {
 	
 	@Resource

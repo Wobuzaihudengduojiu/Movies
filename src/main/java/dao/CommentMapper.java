@@ -1,6 +1,8 @@
 package dao;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import pojo.entity.Comment;
 
 public interface CommentMapper {
@@ -14,5 +16,5 @@ public interface CommentMapper {
 
     int updateByPrimaryKey(Comment record);
     
-    List<Comment> selectCommentByMovId(@Param("mov_id")Integer mov_id);
+    List<Comment> selectCommentByMovId(@Param("mov_id") Integer mov_id);
 }

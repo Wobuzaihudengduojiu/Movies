@@ -17,5 +17,5 @@ public interface CinemaMapper {
     /**
 	 * 根据电影查找电影院(需要 电影id)
 	 */
-	public List<Cinema> selectCinemaByMovie(int mov_id);
+	List<Cinema> selectCinemaByMovie(int mov_id);
 }
