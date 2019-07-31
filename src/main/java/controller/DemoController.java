@@ -2,14 +2,14 @@ package controller;
 
 
 import dao.CinemaMapper;
+import exception.ParameterException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import pojo.VO.ResultVO;
 import pojo.entity.Cinema;
 
 import javax.annotation.Resource;

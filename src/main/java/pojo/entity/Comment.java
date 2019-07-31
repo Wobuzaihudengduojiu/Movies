@@ -1,17 +1,17 @@
 package pojo.entity;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+
+import java.util.Date;
 
 
+@Builder
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@AllArgsConstructor
 public class Comment {
     private Integer comId;
 

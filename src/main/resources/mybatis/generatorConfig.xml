@@ -35,26 +35,10 @@
         </javaClientGenerator>
         <!-- 需要生成Java代码所对应的表，可有多个 -->
         <!-- 若tableName="%" 表示对该数据库中所有的表生成PO -->
-        <table tableName="ticket">
-            <domainObjectRenamingRule searchString="^" replaceString=""/>
-        </table>
-        <!--  
-        <table tableName="comment">
-            <domainObjectRenamingRule searchString="^" replaceString=""/>
-        </table>
 
-        <table tableName="movie">
-            <domainObjectRenamingRule searchString="^" replaceString=""/>
-        </table>
-        <table tableName="cinema">
-            <domainObjectRenamingRule searchString="^" replaceString=""/>
-        </table>
         <table tableName="user">
             <domainObjectRenamingRule searchString="^" replaceString=""/>
         </table>
-        <table tableName="dictionary">
-            <domainObjectRenamingRule searchString="^" replaceString=""/>
-        </table>
-		-->
+
     </context>
 </generatorConfiguration>

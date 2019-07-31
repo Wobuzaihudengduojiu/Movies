@@ -1,16 +1,19 @@
 package pojo.entity;
 
-import java.util.Date;
-
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
+import java.util.Date;
+
+
+@Builder
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@AllArgsConstructor
+@ApiModel (value = "电影院实体类")
 public class Cinema {
     private Integer cineId;
 
@@ -28,5 +31,4 @@ public class Cinema {
 
     private Date updateTime;
 
-   
 }
