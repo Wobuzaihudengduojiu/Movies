@@ -31,5 +31,4 @@ public class Cinema {
 
     private Date updateTime;
 
-
 }

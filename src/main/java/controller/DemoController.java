@@ -20,25 +20,20 @@ import java.util.List;
 @Api
 public class DemoController {
 
+//    @Resource
+//    private CinemaMapper cinemaMapper;
+//
+//    @ApiOperation(value = "demo")
+//    @GetMapping("/aa.dos")
+//    public List<Cinema> getCinema(@ApiParam(value="sss") @RequestParam String id){
+//
+//        log.info("Cinema:{}",cinemaMapper.selectAll());
+//
+////        if(true){
+////            throw new ParameterException("参数解析错误");
+////        }
+//
+//        return cinemaMapper.selectAll();
+//    }
 
-    @Resource
-    private CinemaMapper cinemaMapper;
-
-    @ApiOperation(value = "demo")
-    @GetMapping("/aa.dos")
-    public Boolean getCinema(){
-
-        log.info("Cinema:{}",cinemaMapper.selectAll());
-
-        if(true){
-            throw new ParameterException("参数解析错误");
-        }
-
-        return cinemaMapper.insert(null)>0;
-    }
-
-    @PostMapping("/postdemo")
-    public String Demo(@RequestParam String name){
-        return name;
-    }
 }
