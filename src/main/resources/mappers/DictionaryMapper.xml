@@ -51,4 +51,11 @@
     dict_seat, creat_time, update_time
     from dictionary
   </select>
+
+  <select id="queryByMovIdAndCineId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select dict_id, mov_id, cine_id, dict_start_time, dict_end_time, dict_hall, dict_price,
+    dict_seat, creat_time, update_time
+    from dictionary
+    where mov_id=#{movId,jdbcType=INTEGER} and  cine_id = #{cineId,jdbcType=INTEGER}
+  </select>
 </mapper>
