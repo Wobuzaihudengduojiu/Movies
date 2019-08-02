@@ -50,7 +50,7 @@
 
   <!-- 根据电影查找电影院(需要 电影id)-->
   <select id="selectCinemaByMovie" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
-  	select c.* from cinema as c,dictionary as d where d.mov_id = #{mov_id} GROUP BY c.cine_id
+  	select c.* from cinema as c,dictionary as d where c.cine_id = d.cine_id and d.mov_id = #{mov_id} GROUP BY c.cine_id
   </select>
   
 </mapper>
