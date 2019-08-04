@@ -52,5 +52,9 @@
   <select id="selectCinemaByMovie" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
   	select c.* from cinema as c,dictionary as d where c.cine_id = d.cine_id and d.mov_id = #{mov_id} GROUP BY c.cine_id
   </select>
-  
+    <select id="selectByDictId" resultMap="BaseResultMap">
+      select * from cinema left join dictionary d on d.cine_id=cinema.cine_id
+      where d.dict_id=#{dictId,jdbcType=INTEGER}
+    </select>
+
 </mapper>

@@ -10,6 +10,7 @@
         <property name="database.username" value="root"/>
         <property name="database.password" value="990727"/>
     </properties>
+
     <!-- 开启驼峰映射 ，为自定义的SQL语句服务-->
     <!--设置启用数据库字段下划线映射到java对象的驼峰式命名属性，默认为false-->
     <settings>

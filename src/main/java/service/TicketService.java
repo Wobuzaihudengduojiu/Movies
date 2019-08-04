@@ -20,7 +20,7 @@ public interface TicketService {
     /**
      * 批量插入ticket对象
      */
-    Boolean insertTickets(Ticket ticket);
+    Boolean insertTickets(String seat,Integer dictId);
 
 
 

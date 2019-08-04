@@ -12,6 +12,11 @@ public interface DictonaryService {
      */
     List<Dictionary> queryByMovIdAndCineId(Integer movId,Integer cineId);
 
+    /**
+     * 查询已选过的座位 Json字符串
+     */
+    String selectSeats(Integer dictId);
+
 
 
 }

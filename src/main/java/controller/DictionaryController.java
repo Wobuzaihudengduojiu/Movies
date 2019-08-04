@@ -32,4 +32,12 @@ public class DictionaryController {
 
             return dictonaryService.queryByMovIdAndCineId(movId,cineId);
     }
+
+    @ApiOperation(value ="根据场次id查询已经选过的座位")
+    @GetMapping("/query/seat")
+    public String selectSeats(
+            @ApiParam(value = "场次id") @RequestParam("dictId") Integer dictId){
+
+            return dictonaryService.selectSeats(dictId);
+    }
 }

@@ -14,6 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Dictionary {
+
     private Integer dictId;
 
     private Integer movId;
@@ -24,7 +25,7 @@ public class Dictionary {
 
     private Date dictEndTime;
 
-    private Integer dictHall;
+    private String dictHall;
 
     private BigDecimal dictPrice;
 
