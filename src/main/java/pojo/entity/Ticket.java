@@ -14,7 +14,7 @@ import java.util.Date;
 public class Ticket {
     private Integer tkId;
 
-    private Integer tkStatus;
+    private Integer tkStatus = 0;
 
     private String dictSeat;
 

@@ -1,6 +1,8 @@
 package dao;
 
 import java.util.List;
+
+import io.swagger.models.auth.In;
 import pojo.entity.Cinema;
 
 public interface CinemaMapper {
@@ -19,5 +21,5 @@ public interface CinemaMapper {
 	 */
 	List<Cinema> selectCinemaByMovie(int mov_id);
 
-    Cinema selectByDictId(Integer dictId);
+	Cinema selectByDictId(Integer dictId);
 }
