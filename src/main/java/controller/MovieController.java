@@ -34,18 +34,11 @@ public class MovieController {
 	public List<Cinema> selectCinemaByMovie(@ApiParam(value="电影id  movId") @RequestParam(name="movId") int mov_id){
 		return movieService.selectCinemaByMovie(mov_id);
 	}
+
 	
-	@ApiOperation(value = "查找正在热映")
-    @GetMapping("/selectMovieByHot.do")
-	public List<Movie> selectMovieByHot(@ApiParam(value="正在热映  status (0或1)") @RequestParam(name="status") int status){
-		
-		return movieService.selectMovieByHot(status);
-	}
-	
-	@ApiOperation(value = "查找即将上映")
-    @GetMapping("/selectMovieByCome.do")
+	@ApiOperation(value = "根据状态查找电影")
+    @GetMapping("/selectMovieByStatus.do")
 	public List<Movie> selectMovieByCome(@ApiParam(value="即将上映  status (0或1)") @RequestParam(name="status") int status){
-		
 		return movieService.selectMovieByCome(status);
 	}
 	

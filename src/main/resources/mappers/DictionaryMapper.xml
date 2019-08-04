@@ -7,7 +7,7 @@
     <result column="cine_id" jdbcType="INTEGER" property="cineId" />
     <result column="dict_start_time" jdbcType="TIMESTAMP" property="dictStartTime" />
     <result column="dict_end_time" jdbcType="TIMESTAMP" property="dictEndTime" />
-    <result column="dict_hall" jdbcType="INTEGER" property="dictHall" />
+    <result column="dict_hall" jdbcType="VARCHAR" property="dictHall" />
     <result column="dict_price" jdbcType="DECIMAL" property="dictPrice" />
     <result column="dict_seat" jdbcType="VARCHAR" property="dictSeat" />
     <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
@@ -23,7 +23,7 @@
       dict_price, dict_seat, creat_time, 
       update_time)
     values (#{dictId,jdbcType=INTEGER}, #{movId,jdbcType=INTEGER}, #{cineId,jdbcType=INTEGER}, 
-      #{dictStartTime,jdbcType=TIMESTAMP}, #{dictEndTime,jdbcType=TIMESTAMP}, #{dictHall,jdbcType=INTEGER}, 
+      #{dictStartTime,jdbcType=TIMESTAMP}, #{dictEndTime,jdbcType=TIMESTAMP}, #{dictHall,jdbcType=VARCHAR},
       #{dictPrice,jdbcType=DECIMAL}, #{dictSeat,jdbcType=VARCHAR}, #{creatTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
@@ -33,7 +33,7 @@
       cine_id = #{cineId,jdbcType=INTEGER},
       dict_start_time = #{dictStartTime,jdbcType=TIMESTAMP},
       dict_end_time = #{dictEndTime,jdbcType=TIMESTAMP},
-      dict_hall = #{dictHall,jdbcType=INTEGER},
+      dict_hall = #{dictHall,jdbcType=VARCHAR},
       dict_price = #{dictPrice,jdbcType=DECIMAL},
       dict_seat = #{dictSeat,jdbcType=VARCHAR},
       creat_time = #{creatTime,jdbcType=TIMESTAMP},

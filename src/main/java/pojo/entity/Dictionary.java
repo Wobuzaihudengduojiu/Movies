@@ -24,7 +24,7 @@ public class Dictionary {
 
     private Date dictEndTime;
 
-    private Integer dictHall;
+    private String dictHall;
 
     private BigDecimal dictPrice;
 

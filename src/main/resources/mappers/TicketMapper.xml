@@ -19,11 +19,11 @@
     where tk_id = #{tkId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="pojo.entity.Ticket">
-    insert into ticket (tk_id, tk_status, dict_seat, 
+    insert into ticket (tk_status, dict_seat,
       dict_hall, dict_start_time, dick_end_time, 
       cine_address, user_id, creat_time, 
       update_time, mov_id)
-    values (#{tkId,jdbcType=INTEGER}, #{tkStatus,jdbcType=INTEGER}, #{dictSeat,jdbcType=VARCHAR}, 
+    values (#{tkStatus,jdbcType=INTEGER}, #{dictSeat,jdbcType=VARCHAR},
       #{dictHall,jdbcType=VARCHAR}, #{dictStartTime,jdbcType=TIMESTAMP}, #{dickEndTime,jdbcType=TIMESTAMP}, 
       #{cineAddress,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{creatTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{movId,jdbcType=INTEGER})
