@@ -33,6 +33,8 @@ public class TicketVO {
 
     private Integer movId;
 
+    private Integer dictId;
+
     private String movName;
 
     /**

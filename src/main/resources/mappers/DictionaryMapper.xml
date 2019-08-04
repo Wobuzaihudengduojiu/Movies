@@ -1,58 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.DictionaryMapper">
-  <resultMap id="BaseResultMap" type="pojo.entity.Dictionary">
-    <id column="dict_id" jdbcType="INTEGER" property="dictId" />
-    <result column="mov_id" jdbcType="INTEGER" property="movId" />
-    <result column="cine_id" jdbcType="INTEGER" property="cineId" />
-    <result column="dict_start_time" jdbcType="TIMESTAMP" property="dictStartTime" />
-    <result column="dict_end_time" jdbcType="TIMESTAMP" property="dictEndTime" />
-    <result column="dict_hall" jdbcType="INTEGER" property="dictHall" />
-    <result column="dict_price" jdbcType="DECIMAL" property="dictPrice" />
-    <result column="dict_seat" jdbcType="VARCHAR" property="dictSeat" />
-    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <resultMap id="BaseResultMap" type="pojo.entity.Dictionary">
+        <id column="dict_id" jdbcType="INTEGER" property="dictId"/>
+        <result column="mov_id" jdbcType="INTEGER" property="movId"/>
+        <result column="cine_id" jdbcType="INTEGER" property="cineId"/>
+        <result column="dict_start_time" jdbcType="TIMESTAMP" property="dictStartTime"/>
+        <result column="dict_end_time" jdbcType="TIMESTAMP" property="dictEndTime"/>
+        <result column="dict_hall" jdbcType="VARCHAR" property="dictHall"/>
+        <result column="dict_price" jdbcType="DECIMAL" property="dictPrice"/>
+        <result column="dict_seat" jdbcType="VARCHAR" property="dictSeat"/>
+        <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from dictionary
     where dict_id = #{dictId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="pojo.entity.Dictionary">
+    <insert id="insert" parameterType="pojo.entity.Dictionary">
     insert into dictionary (dict_id, mov_id, cine_id, 
       dict_start_time, dict_end_time, dict_hall, 
       dict_price, dict_seat, creat_time, 
       update_time)
     values (#{dictId,jdbcType=INTEGER}, #{movId,jdbcType=INTEGER}, #{cineId,jdbcType=INTEGER}, 
-      #{dictStartTime,jdbcType=TIMESTAMP}, #{dictEndTime,jdbcType=TIMESTAMP}, #{dictHall,jdbcType=INTEGER}, 
+      #{dictStartTime,jdbcType=TIMESTAMP}, #{dictEndTime,jdbcType=TIMESTAMP}, #{dictHall,jdbcType=VARCHAR},
       #{dictPrice,jdbcType=DECIMAL}, #{dictSeat,jdbcType=VARCHAR}, #{creatTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="pojo.entity.Dictionary">
-    update dictionary
-    set mov_id = #{movId,jdbcType=INTEGER},
-      cine_id = #{cineId,jdbcType=INTEGER},
-      dict_start_time = #{dictStartTime,jdbcType=TIMESTAMP},
-      dict_end_time = #{dictEndTime,jdbcType=TIMESTAMP},
-      dict_hall = #{dictHall,jdbcType=INTEGER},
-      dict_price = #{dictPrice,jdbcType=DECIMAL},
-      dict_seat = #{dictSeat,jdbcType=VARCHAR},
-      creat_time = #{creatTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where dict_id = #{dictId,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <update id="updateByPrimaryKey" parameterType="pojo.entity.Dictionary">
+        update dictionary
+        set
+        <if test="movId!=null">
+            mov_id = #{movId,jdbcType=INTEGER},
+        </if>
+        <if test="cineId!=null">
+            cine_id = #{cineId,jdbcType=INTEGER},
+        </if>
+        <if test="dictStartTime!=null">
+            dict_start_time = #{dictStartTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="dictEndTime!=null">
+            dict_end_time = #{dictEndTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="dictHall!=null">
+            dict_hall = #{dictHall,jdbcType=VARCHAR},
+        </if>
+        <if test="dictPrice!=null">
+            dict_price = #{dictPrice,jdbcType=DECIMAL},
+        </if>
+        <if test="dictSeat!=null">
+            dict_seat = #{dictSeat,jdbcType=VARCHAR}
+        </if>
+        where dict_id = #{dictId,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select dict_id, mov_id, cine_id, dict_start_time, dict_end_time, dict_hall, dict_price, 
     dict_seat, creat_time, update_time
     from dictionary
     where dict_id = #{dictId,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
+    <select id="selectAll" resultMap="BaseResultMap">
     select dict_id, mov_id, cine_id, dict_start_time, dict_end_time, dict_hall, dict_price, 
     dict_seat, creat_time, update_time
     from dictionary
   </select>
 
-  <select id="queryByMovIdAndCineId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="queryByMovIdAndCineId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select dict_id, mov_id, cine_id, dict_start_time, dict_end_time, dict_hall, dict_price,
     dict_seat, creat_time, update_time
     from dictionary

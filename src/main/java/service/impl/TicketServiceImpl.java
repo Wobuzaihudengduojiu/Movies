@@ -1,15 +1,23 @@
 package service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import dao.CinemaMapper;
+import dao.DictionaryMapper;
 import dao.MovieMapper;
 import dao.TicketMapper;
 import exception.ParameterException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import pojo.VO.TicketVO;
-import pojo.entity.Movie;
-import pojo.entity.Ticket;
+import pojo.entity.Dictionary;
+import pojo.entity.*;
 import service.TicketService;
+import util.Constants;
+import util.Utils;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -27,6 +35,12 @@ public class TicketServiceImpl implements TicketService {
     @Resource
     private MovieMapper movieMapper;
 
+    @Resource
+    private DictionaryMapper dictionaryMapper;
+
+    @Resource
+    private CinemaMapper cinemaMapper;
+
     @Override
     public List<TicketVO> selectPaymentRecordById(Integer userid, Integer movid) {
 
@@ -38,10 +52,10 @@ public class TicketServiceImpl implements TicketService {
             throw new ParameterException("您还没有登录");
         } else {
 
-            //movies--->ticket 用户一次可以买多张票，用于合并座位和订单id
+            //movies--->ticket 用户一次可以买多张票，用于合并座位和订单id（根据场次）
             Map<Integer, List<Ticket>> movies = ticketMapper.selectByUserId(userid)
                     .stream()
-                    .collect(Collectors.groupingBy(Ticket::getMovId));
+                    .collect(Collectors.groupingBy(Ticket::getDictId));
 
 
             ticketVo = ticketMapper.selectByUserId(userid)
@@ -51,14 +65,14 @@ public class TicketServiceImpl implements TicketService {
 
                                 Movie movie = movieMapper.selectByPrimaryKey(v.getMovId());
 
-                                //合并座位
-                                String seats = movies.get(v.getMovId())
+                                //合并座位--->根据场次
+                                String seats = movies.get(v.getDictId())
                                         .stream()
                                         .map(Ticket::getDictSeat)
                                         .collect(Collectors.joining(" "));
 
                                 //合并id
-                                String ticketPayRecord = movies.get(v.getMovId())
+                                String ticketPayRecord = movies.get(v.getDictId())
                                         .stream()
                                         .map(v1 -> v1.getTkId().toString())
                                         .collect(joining(" "));
@@ -70,12 +84,13 @@ public class TicketServiceImpl implements TicketService {
                                         .cineAddress(v.getCineAddress())
                                         .dictSeat(seats)
                                         .tkStatus(v.getTkStatus())
-                                        .total(movies.get(v.getMovId()).size())
+                                        .total(movies.get(v.getDictId()).size())
                                         .dictHall(v.getDictHall())
                                         .image(movie.getMovImage())
                                         .movId(v.getMovId())
                                         .movName(movie.getMovName())
                                         .payRecord(ticketPayRecord)
+                                        .dictId(v.getDictId())
                                         .build();
 
                                 return ticketVO;
@@ -125,49 +140,82 @@ public class TicketServiceImpl implements TicketService {
 
     }
 
-
     @Override
-    public Boolean insertTickets(Ticket ticket) {
+    public Boolean insertTickets(String seat, Integer dictId) {
+
+        Dictionary dictionary = dictionaryMapper.selectByPrimaryKey(dictId);
+        Cinema cinema = cinemaMapper.selectByDictId(dictId);
+
 
         /**
-         *
-         * 将座位号按照空格进行切割，团购记录
+         * 将座位号按照空格进行切割，团购记录，修改座位状态
          */
 
-        List<Ticket> tickets;
+        int[][] selectedSeat = jsonToTwoArr(dictionary.getDictSeat());
 
-        if (StringUtils.isEmpty(ticket.getMovId())
-                || StringUtils.isEmpty(ticket.getDictSeat())
-                || StringUtils.isEmpty(ticket.getUserId())
-                || StringUtils.isEmpty(ticket.getCineAddress())
-                || StringUtils.isEmpty(ticket.getDictStartTime())
-                || StringUtils.isEmpty(ticket.getDictHall())
-                || StringUtils.isEmpty(ticket.getDickEndTime())) {
 
-            throw new ParameterException("请检查参数是否正确");
-        }else{
-
-        tickets=Arrays.stream(ticket.getDictSeat().split(" "))
+        List<Ticket> tickets = Arrays.stream(seat.split(" "))
                 .map(
-                        v->{
+                        v -> {
 
-                            Ticket ticket1=Ticket.builder()
-                                    .cineAddress(ticket.getCineAddress())
-                                    .dickEndTime(ticket.getDickEndTime())
-                                    .dictHall(ticket.getDictHall())
-                                    .dictSeat(v)
-                                    .dictStartTime(ticket.getDictStartTime())
-                                    .movId(ticket.getMovId())
-                                    .userId(ticket.getUserId())
-                                    .tkStatus(0)
-                                    .build();
+                            /**
+                             * 修改座位状态,将座位修改为占有 1
+                             */
 
-                            return ticket1;
+                            int i = v.charAt(0)-'0';
 
-                })
+                            int j = v.charAt(2)-'0';
+
+                            selectedSeat[i - 1][j - 1] = 1;
+
+                            Ticket ticket = new Ticket();
+                            BeanUtils.copyProperties(dictionary, ticket);
+                            ticket.setDictHall(dictionary.getDictHall());
+                            ticket.setDickEndTime(dictionary.getDictEndTime());
+                            ticket.setDictSeat(v);
+                            ticket.setCineAddress(cinema.getCineAddress());
+                            ticket.setTkStatus(0);
+
+                            Object o = Utils.getRequest().getSession().getAttribute(Constants.SESSION_USER_INFO);
+                            if (o != null) {
+                                User user = (User) o;
+                                ticket.setUserId(user.getUserid());
+                            } else {
+                                ticket.setUserId(1);
+                            }
+
+                            return ticket;
+
+                        })
                 .collect(toList());
+
+        String seats = JSONObject.toJSONString(selectedSeat);
+
+        dictionary.setDictSeat(seats);
+
+        return ticketMapper.insertTickets(tickets) > 0 && dictionaryMapper.updateByPrimaryKey(dictionary)>0;
+    }
+
+
+    /**
+     * 将字符串转换为二维数组
+     */
+
+    private int[][] jsonToTwoArr(String str) {
+
+        int[][] param = new int[10][5];
+
+        final JSONArray arr = JSON.parseArray(str);
+
+        for (int i = 0; i < arr.size(); i++) {
+
+            JSONArray jsonArray = JSON.parseArray(arr.get(i).toString());
+            for (int j = 0; j < jsonArray.size(); j++) {
+
+                param[i][j] = (int) jsonArray.get(j);
+            }
         }
 
-        return ticketMapper.insertTickets(tickets)>0;
+        return param;
     }
 }

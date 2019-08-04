@@ -98,5 +98,6 @@
   <select id="selectMovieByCinema" parameterType="java.lang.Integer" resultMap="BaseResultMap">
   	select m.* from movie m,dictionary d where d.cine_id = #{cine_id} and m.mov_id = d.mov_id GROUP BY m.mov_id
   </select>
+
   
 </mapper>

@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Param;
 import pojo.entity.Ticket;
 
 public interface TicketMapper {
-
     int deleteByPrimaryKey(Integer tkId);
 
     int insert(Ticket record);
