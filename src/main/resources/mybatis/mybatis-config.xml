@@ -19,6 +19,14 @@
     <typeAliases>
         <package name="pojo"></package>
     </typeAliases>
+
+    <!-- 配置分页插件 -->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!--PageHelper插件4.0.0以后的版本支持自动识别使用的数据库-->
+        </plugin>
+    </plugins>
+
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
@@ -30,6 +38,7 @@
             </dataSource>
         </environment>
     </environments>
+
     <mappers>
 
     </mappers>

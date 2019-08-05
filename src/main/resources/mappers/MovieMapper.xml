@@ -38,22 +38,51 @@
       #{movImage,jdbcType=VARCHAR}, #{movPhotos,jdbcType=VARCHAR}, #{movArea,jdbcType=VARCHAR}, 
       #{creatTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="pojo.entity.Movie">
+  <update id="updateMovieInfo" parameterType="pojo.entity.Movie">
     update movie
-    set mov_name = #{movName,jdbcType=VARCHAR},
+    set
+    <if test="movName!=null and movName!=''">
+      mov_name = #{movName,jdbcType=VARCHAR},
+    </if>
+    <if test="movDescription!=null and movDescription!=''">
       mov_description = #{movDescription,jdbcType=VARCHAR},
+    </if>
+    <if test="movType!=null and movType!=''">
       mov_type = #{movType,jdbcType=VARCHAR},
+    </if>
+    <if test="movStatus!=null">
       mov_status = #{movStatus,jdbcType=INTEGER},
+    </if>
+    <if test="movLastTime!=null">
       mov_last_time = #{movLastTime,jdbcType=INTEGER},
+    </if>
+    <if test="movDirector!=null and movDirector!=''">
       mov_director = #{movDirector,jdbcType=VARCHAR},
+    </if>
+    <if test="movCore!=null">
       mov_core = #{movCore,jdbcType=DOUBLE},
+    </if>
+    <if test="movReleaseTime!=null">
       mov_release_time = #{movReleaseTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="movActor!=null and movActor!=''">
       mov_actor = #{movActor,jdbcType=VARCHAR},
+    </if>
+    <if test="movIsCome!=null">
       mov_is_come = #{movIsCome,jdbcType=INTEGER},
+    </if>
+    <if test="movIsHot!=null">
       mov_is_hot = #{movIsHot,jdbcType=INTEGER},
+    </if>
+    <if test="movImage!=null and movImage!=''">
       mov_image = #{movImage,jdbcType=VARCHAR},
+    </if>
+    <if test="movPhotos!=null and movPhotos!=''">
       mov_photos = #{movPhotos,jdbcType=VARCHAR},
+    </if>
+    <if test="movArea!=null and movArea!=''">
       mov_area = #{movArea,jdbcType=VARCHAR},
+    </if>
       creat_time = #{creatTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where mov_id = #{movId,jdbcType=INTEGER}

@@ -1,12 +1,9 @@
 package dao;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
-
-import pojo.VO.MovieVO;
-import pojo.entity.Cinema;
 import pojo.entity.Movie;
+
+import java.util.List;
 
 public interface MovieMapper {
     int deleteByPrimaryKey(Integer movId);
@@ -17,7 +14,7 @@ public interface MovieMapper {
 
     List<Movie> selectAll();
 
-    int updateByPrimaryKey(Movie record);
+    int updateMovieInfo(Movie record);
     
 	/**
 	 * 查找正在热映

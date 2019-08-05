@@ -91,7 +91,17 @@ public class MovieServiceImpl implements MovieService {
 		return movieMapper.insert(movie)>0;
 	}
 
-//	@Test
+	@Override
+	public List<Movie> selectAllMovies(int pageNumber, int pageSize) {
+		return movieMapper.selectAll();
+	}
+
+	@Override
+	public Boolean updateMovieInfo(Movie movie) {
+		return movieMapper.updateMovieInfo(movie)>0;
+	}
+
+	//	@Test
 //	public void test() {
 //		int code = moviemapper.hashCode();
 //		System.out.println(code);

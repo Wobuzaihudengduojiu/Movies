@@ -36,11 +36,19 @@ public interface MovieService {
 	 */
 	List<Movie> selectMovieByMov_area(String mov_area);
 	/*
-	 * 根据电影院查询所有的电影
+	 * 根电据电影院查询所有的影
 	 */
 	List<Movie> selectMovieByCinema(int cine_id);
 	/**
 	 * 管理员添加电影信息
 	 */
 	Boolean insertMovie(Movie movie);
+	/**
+	 * 管理员查询所有的电影
+	 */
+	List<Movie> selectAllMovies(int pageNumber,int pageSize);
+	/**
+	 * 管理员修改电影信息
+	 */
+	Boolean updateMovieInfo(Movie movie);
 }
