@@ -7,6 +7,8 @@ import java.util.List;
 @Data
 public class Page<T> {
 
+
+
     private int pageNum = 0;
 
     private int pageSize = 10;
