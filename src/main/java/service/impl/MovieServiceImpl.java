@@ -1,19 +1,17 @@
 package service.impl;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-
 import dao.CinemaMapper;
 import dao.CommentMapper;
 import dao.MovieMapper;
+import org.springframework.stereotype.Service;
 import pojo.VO.MovieVO;
 import pojo.entity.Cinema;
 import pojo.entity.Comment;
 import pojo.entity.Movie;
 import service.MovieService;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 //@SpringBootApplication(junit测试时用)
@@ -87,11 +85,18 @@ public class MovieServiceImpl implements MovieService {
 		return movieMapper.selectMovieByCinema(cine_id);
 	}
 
+
+	@Override
+	public Boolean insertMovie(Movie movie){
+		return movieMapper.insert(movie)>0;
+	}
+
 //	@Test
 //	public void test() {
 //		int code = moviemapper.hashCode();
 //		System.out.println(code);
 //	}
-	
+
+
 	
 }
