@@ -27,7 +27,7 @@ public class DictonaryServiceImpl implements DictonaryService {
     @Override
     public List<Dictionary> queryByMovIdAndCineId(Integer movId, Integer cineId) {
 
-        if(StringUtils.isEmpty(movId)||StringUtils.isEmpty(cineId)){
+        if (StringUtils.isEmpty(movId) || StringUtils.isEmpty(cineId)) {
 
             throw new MoviesException(ErrorEnum.E_90003);
         }
@@ -36,11 +36,23 @@ public class DictonaryServiceImpl implements DictonaryService {
     }
 
     @Override
+    public Boolean insertDictonary(Dictionary dictionary) {
+
+        return dictionaryMapper.insert(dictionary) > 0;
+    }
+
+    @Override
+    public Boolean updateDictionary(Dictionary dictionary) {
+
+        return dictionaryMapper.updateByPrimaryKey(dictionary) > 0;
+    }
+
+    @Override
     public String selectSeats(Integer dictId) {
 
-        if(StringUtils.isEmpty(dictId)){
+        if (StringUtils.isEmpty(dictId)) {
 
-            throw  new MoviesException(ErrorEnum.E_90003);
+            throw new MoviesException(ErrorEnum.E_90003);
         }
 
         return dictionaryMapper.selectByPrimaryKey(dictId)

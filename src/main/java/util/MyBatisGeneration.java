@@ -28,22 +28,24 @@ public class MyBatisGeneration {
 //        }
 
 
-        String str="6排5座";
+        String str="10排12座";
+
+        System.out.println(str.length());
 
         System.out.println((int)str.charAt(0)-'0');
 
-        int[][] param =new int[10][5];
-
-        System.out.println(JSONObject.toJSONString(param));
-
-        int[][] p1=jsonToTwoArr(JSONObject.toJSONString(param));
-
-        for(int i =0 ;i<p1.length;i++){
-
-            for(int j=0;j<p1[i].length;j++){
-                System.out.println(p1[i][j]);
-            }
-        }
+//        int[][] param =new int[10][5];
+//
+//        System.out.println(JSONObject.toJSONString(param));
+//
+//        int[][] p1=jsonToTwoArr(JSONObject.toJSONString(param));
+//
+//        for(int i =0 ;i<p1.length;i++){
+//
+//            for(int j=0;j<p1[i].length;j++){
+//                System.out.println(p1[i][j]);
+//            }
+//        }
 
 
 

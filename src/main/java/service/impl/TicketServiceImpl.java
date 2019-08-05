@@ -162,11 +162,9 @@ public class TicketServiceImpl implements TicketService {
                              * 修改座位状态,将座位修改为占有 1
                              */
 
-                            int i = v.charAt(0)-'0';
+                            String[] res=v.split("\\排|座|//");
 
-                            int j = v.charAt(2)-'0';
-
-                            selectedSeat[i - 1][j - 1] = 1;
+                            selectedSeat[Integer.parseInt(res[0]) - 1][Integer.parseInt(res[1]) - 1] = 1;
 
                             Ticket ticket = new Ticket();
                             BeanUtils.copyProperties(dictionary, ticket);
@@ -203,7 +201,7 @@ public class TicketServiceImpl implements TicketService {
 
     private int[][] jsonToTwoArr(String str) {
 
-        int[][] param = new int[10][5];
+        int[][] param = new int[10][12];
 
         final JSONArray arr = JSON.parseArray(str);
 

@@ -11,12 +11,8 @@ import pojo.VO.MovieVO;
 import pojo.entity.Cinema;
 import pojo.entity.Movie;
 import service.MovieService;
-import util.GetFileUrl;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -48,19 +44,7 @@ public class MovieController {
 		return movieService.selectDetailMovieInfo(mov_id);
 	}
 
-	/**
-	 *  该方法在CommentController中
-	 */
-	@Deprecated()
-	@ApiOperation(value = "对电影进行评论(需要 用户id,电影id,评论内容)")
-    @GetMapping("/insertCommentToMovie.do")
-	public Boolean insertCommentToMovie(
-			@ApiParam(value="用户id  userId") @RequestParam(name="userId") int userid,
-			@ApiParam(value="电影id  movId") @RequestParam(name="movId") int mov_id,
-			@ApiParam(value="评论内容 comContent") @RequestParam(name="comContent") String com_content) {
-		
-		return movieService.insertCommentToMovie(userid, mov_id, com_content);
-	}
+
 	
 	@ApiOperation(value = "根据电影名称搜索电影(需要 电影名称)")
     @GetMapping("/selectMovieByMov_name.do")
@@ -83,42 +67,17 @@ public class MovieController {
 	}
 
 
-	@ApiOperation(value = "添加电影")
-	@PostMapping(value = "/insertMovie.do")
-	@ApiImplicitParams({
-	})
-	@ResponseBody
-	public Boolean insertMovie(
-			@RequestParam("movName") @ApiParam(value = "电影名称") String movName,
-			@RequestParam("movDescription") @ApiParam(value = "描述") String movDescription,
-			@RequestParam("movType") @ApiParam(value = "类型") String movType,
-			@RequestParam("movStatus") @ApiParam(value = "状态0下架1未下架") int movStatus,
-			@RequestParam("movLastTime") @ApiParam(value = "持续时间") int movLastTime,
-			@RequestParam("movDirector") @ApiParam(value = "导演") String movDirector,
-			@RequestParam("movCore") @ApiParam(value = "评分") Double movCore,
-			@RequestParam("movReleaseTime") @ApiParam(value = "上映时间") Date movReleaseTime,
-			@RequestParam("movActor") @ApiParam(value = "主演") String movActor,
-			@RequestParam("movIsCome") @ApiParam(value = "即将上映") int movIsCome,
-			@RequestParam("movIsHot") @ApiParam(value = "正在热映") int movIsHot,
-			//@RequestParam("movImage") @ApiParam(value = "海报") String movImage,
-			//@RequestParam("movPhotos") @ApiParam(value = "剧照") String movPhotos,
-			@RequestParam("movArea") @ApiParam(value = "地区") String movArea,
-			@RequestParam("imagefile") @ApiParam(value = "海报") MultipartFile imagefile,
-			@RequestParam(name="photosfiles") @ApiParam(value = "剧照")List<MultipartFile> photosfiles,
-			HttpServletRequest request
-										) throws IOException {
-		String movImage = GetFileUrl.get(imagefile,movName,request);
+	/**
+	 *  该方法在CommentController中
+	 */
+	@Deprecated()
+	@ApiOperation(value = "对电影进行评论(需要 用户id,电影id,评论内容)")
+	@GetMapping("/insertCommentToMovie.do")
+	public Boolean insertCommentToMovie(
+			@ApiParam(value="用户id  userId") @RequestParam(name="userId") int userid,
+			@ApiParam(value="电影id  movId") @RequestParam(name="movId") int mov_id,
+			@ApiParam(value="评论内容 comContent") @RequestParam(name="comContent") String com_content) {
 
-		StringBuffer movPhotosBuffer = new StringBuffer();
-		for(MultipartFile file : photosfiles){
-			movPhotosBuffer= movPhotosBuffer.append(GetFileUrl.get(file,movName,request)+" ");
-		}
-		String movPhotos = movPhotosBuffer.toString();
-		Movie movie = new Movie(null,movName, movDescription, movType, movStatus,
-				movLastTime,  movDirector,movCore, movReleaseTime, movActor,
-				movIsCome, movIsHot, movImage, movPhotos, movArea,null,null);
-		System.out.println(movie);
-
-		return  movieService.insertMovie(movie);
+		return movieService.insertCommentToMovie(userid, mov_id, com_content);
 	}
 }
