@@ -9,4 +9,9 @@ public interface CinemaService {
 
 
     List<Cinema> selectAllCinema();
+
+
+    Boolean insertCinema(Cinema cinema);
+
+    Boolean updateCinema(Cinema cinema);
 }

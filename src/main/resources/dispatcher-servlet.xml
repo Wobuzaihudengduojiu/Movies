@@ -15,6 +15,7 @@
     <!-- 自动扫描装配 -->
     <context:component-scan base-package="controller"/>
     <context:component-scan base-package="service" />
+    <context:component-scan base-package="extra.controller"/>
 
     <!--静态资源映射-->
     <!--本项目把静态资源放在了webapp的statics目录下，资源映射如下-->

@@ -12,7 +12,7 @@ import pojo.VO.ResultVO;
 import util.ResultVOUtil;
 
 @Slf4j
-@RestControllerAdvice(basePackages = {"controller"})
+@RestControllerAdvice(basePackages = {"controller","extra.controller"})
 public class MyResponseBodyAdvice implements ResponseBodyAdvice {
     /**
      * 判断支持的类型
