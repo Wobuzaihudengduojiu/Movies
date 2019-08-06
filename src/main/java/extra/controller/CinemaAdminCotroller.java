@@ -28,14 +28,14 @@ public class CinemaAdminCotroller {
 
     @ApiOperation("添加电影院")
     @PostMapping("/insert")
-    public Boolean insertCinema(@ApiParam(value = "cinema对象") @RequestBody Cinema cinema) {
+    public Boolean insertCinema(@ApiParam(value = "cinema对象")  Cinema cinema) {
 
         return cinemaService.insertCinema(cinema);
     }
 
     @ApiOperation("修改电影院信息")
     @PutMapping("/update")
-    public Boolean updateCinema(@ApiParam(value = "cinema对象") @RequestBody Cinema cinema) {
+    public Boolean updateCinema(@ApiParam(value = "cinema对象") Cinema cinema) {
 
         return cinemaService.updateCinema(cinema);
     }

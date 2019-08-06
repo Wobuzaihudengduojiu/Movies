@@ -23,7 +23,7 @@ public class CommentController {
     @ApiOperation(value = "对电影进行评论")
     @PostMapping("/insert")
     public Boolean insertCommentToMovie(
-            @ApiParam(value="Comment对象") @RequestBody Comment comment)  {
+            @ApiParam(value="Comment对象")Comment comment)  {
 
         return commentService.insertComment(comment);
     }

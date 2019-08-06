@@ -19,14 +19,14 @@ public class DictionaryAdminController {
 
     @ApiOperation("/添加场次")
     @PostMapping("/insert")
-    public Boolean insertDictionary(@ApiParam(value = "dicionary对象") @RequestBody Dictionary dictionary){
+    public Boolean insertDictionary(@ApiParam(value = "dicionary对象")  Dictionary dictionary){
 
         return dictonaryService.insertDictonary(dictionary);
     }
 
     @ApiOperation("/修改场次信息")
     @PostMapping("/update")
-    public Boolean updateDictionary(@ApiParam(value = "dicionary对象") @RequestBody Dictionary dictionary){
+    public Boolean updateDictionary(@ApiParam(value = "dicionary对象") Dictionary dictionary){
 
         return dictonaryService.updateDictionary(dictionary);
     }
