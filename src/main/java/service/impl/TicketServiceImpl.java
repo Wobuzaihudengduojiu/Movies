@@ -173,6 +173,7 @@ public class TicketServiceImpl implements TicketService {
                             ticket.setDictSeat(v);
                             ticket.setCineAddress(cinema.getCineAddress());
                             ticket.setTkStatus(0);
+                            ticket.setDictId(dictId);
 
                             Object o = Utils.getRequest().getSession().getAttribute(Constants.SESSION_USER_INFO);
                             if (o != null) {
@@ -190,6 +191,10 @@ public class TicketServiceImpl implements TicketService {
         String seats = JSONObject.toJSONString(selectedSeat);
 
         dictionary.setDictSeat(seats);
+
+        System.out.println(tickets);
+
+
 
         return ticketMapper.insertTickets(tickets) > 0 && dictionaryMapper.updateByPrimaryKey(dictionary)>0;
     }

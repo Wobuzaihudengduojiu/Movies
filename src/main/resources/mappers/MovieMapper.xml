@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.MovieMapper">
-  <resultMap id="BaseResultMap" type="pojo.entity.Movie">
-    <id column="mov_id" jdbcType="INTEGER" property="movId" />
-    <result column="mov_name" jdbcType="VARCHAR" property="movName" />
-    <result column="mov_description" jdbcType="VARCHAR" property="movDescription" />
-    <result column="mov_type" jdbcType="VARCHAR" property="movType" />
-    <result column="mov_status" jdbcType="INTEGER" property="movStatus" />
-    <result column="mov_last_time" jdbcType="INTEGER" property="movLastTime" />
-    <result column="mov_director" jdbcType="VARCHAR" property="movDirector" />
-    <result column="mov_core" jdbcType="DOUBLE" property="movCore" />
-    <result column="mov_release_time" jdbcType="TIMESTAMP" property="movReleaseTime" />
-    <result column="mov_actor" jdbcType="VARCHAR" property="movActor" />
-    <result column="mov_is_come" jdbcType="INTEGER" property="movIsCome" />
-    <result column="mov_is_hot" jdbcType="INTEGER" property="movIsHot" />
-    <result column="mov_image" jdbcType="VARCHAR" property="movImage" />
-    <result column="mov_photos" jdbcType="VARCHAR" property="movPhotos" />
-    <result column="mov_area" jdbcType="VARCHAR" property="movArea" />
-    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <resultMap id="BaseResultMap" type="pojo.entity.Movie">
+        <id column="mov_id" jdbcType="INTEGER" property="movId"/>
+        <result column="mov_name" jdbcType="VARCHAR" property="movName"/>
+        <result column="mov_description" jdbcType="VARCHAR" property="movDescription"/>
+        <result column="mov_type" jdbcType="VARCHAR" property="movType"/>
+        <result column="mov_status" jdbcType="INTEGER" property="movStatus"/>
+        <result column="mov_last_time" jdbcType="INTEGER" property="movLastTime"/>
+        <result column="mov_director" jdbcType="VARCHAR" property="movDirector"/>
+        <result column="mov_core" jdbcType="DOUBLE" property="movCore"/>
+        <result column="mov_release_time" jdbcType="TIMESTAMP" property="movReleaseTime"/>
+        <result column="mov_actor" jdbcType="VARCHAR" property="movActor"/>
+        <result column="mov_is_come" jdbcType="INTEGER" property="movIsCome"/>
+        <result column="mov_is_hot" jdbcType="INTEGER" property="movIsHot"/>
+        <result column="mov_image" jdbcType="VARCHAR" property="movImage"/>
+        <result column="mov_photos" jdbcType="VARCHAR" property="movPhotos"/>
+        <result column="mov_area" jdbcType="VARCHAR" property="movArea"/>
+        <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from movie
     where mov_id = #{movId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="pojo.entity.Movie">
+    <insert id="insert" parameterType="pojo.entity.Movie">
     insert into movie (mov_id, mov_name, mov_description, 
       mov_type, mov_status, mov_last_time, 
       mov_director, mov_core, mov_release_time, 
@@ -38,95 +38,99 @@
       #{movImage,jdbcType=VARCHAR}, #{movPhotos,jdbcType=VARCHAR}, #{movArea,jdbcType=VARCHAR}, 
       #{creatTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <update id="updateMovieInfo" parameterType="pojo.entity.Movie">
-    update movie
-    set
-    <if test="movName!=null and movName!=''">
-      mov_name = #{movName,jdbcType=VARCHAR},
-    </if>
-    <if test="movDescription!=null and movDescription!=''">
-      mov_description = #{movDescription,jdbcType=VARCHAR},
-    </if>
-    <if test="movType!=null and movType!=''">
-      mov_type = #{movType,jdbcType=VARCHAR},
-    </if>
-    <if test="movStatus!=null">
-      mov_status = #{movStatus,jdbcType=INTEGER},
-    </if>
-    <if test="movLastTime!=null">
-      mov_last_time = #{movLastTime,jdbcType=INTEGER},
-    </if>
-    <if test="movDirector!=null and movDirector!=''">
-      mov_director = #{movDirector,jdbcType=VARCHAR},
-    </if>
-    <if test="movCore!=null">
-      mov_core = #{movCore,jdbcType=DOUBLE},
-    </if>
-    <if test="movReleaseTime!=null">
-      mov_release_time = #{movReleaseTime,jdbcType=TIMESTAMP},
-    </if>
-    <if test="movActor!=null and movActor!=''">
-      mov_actor = #{movActor,jdbcType=VARCHAR},
-    </if>
-    <if test="movIsCome!=null">
-      mov_is_come = #{movIsCome,jdbcType=INTEGER},
-    </if>
-    <if test="movIsHot!=null">
-      mov_is_hot = #{movIsHot,jdbcType=INTEGER},
-    </if>
-    <if test="movImage!=null and movImage!=''">
-      mov_image = #{movImage,jdbcType=VARCHAR},
-    </if>
-    <if test="movPhotos!=null and movPhotos!=''">
-      mov_photos = #{movPhotos,jdbcType=VARCHAR},
-    </if>
-    <if test="movArea!=null and movArea!=''">
-      mov_area = #{movArea,jdbcType=VARCHAR},
-    </if>
-      creat_time = #{creatTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where mov_id = #{movId,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <update id="updateMovieInfo" parameterType="pojo.entity.Movie">
+        update movie
+        set
+        <if test="movName!=null and movName!=''">
+            mov_name = #{movName,jdbcType=VARCHAR},
+        </if>
+        <if test="movDescription!=null and movDescription!=''">
+            mov_description = #{movDescription,jdbcType=VARCHAR},
+        </if>
+        <if test="movType!=null and movType!=''">
+            mov_type = #{movType,jdbcType=VARCHAR},
+        </if>
+        <if test="movStatus!=null">
+            mov_status = #{movStatus,jdbcType=INTEGER},
+        </if>
+        <if test="movLastTime!=null">
+            mov_last_time = #{movLastTime,jdbcType=INTEGER},
+        </if>
+        <if test="movDirector!=null and movDirector!=''">
+            mov_director = #{movDirector,jdbcType=VARCHAR},
+        </if>
+        <if test="movCore!=null">
+            mov_core = #{movCore,jdbcType=DOUBLE},
+        </if>
+        <if test="movReleaseTime!=null">
+            mov_release_time = #{movReleaseTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="movActor!=null and movActor!=''">
+            mov_actor = #{movActor,jdbcType=VARCHAR},
+        </if>
+        <if test="movIsCome!=null">
+            mov_is_come = #{movIsCome,jdbcType=INTEGER},
+        </if>
+        <if test="movIsHot!=null">
+            mov_is_hot = #{movIsHot,jdbcType=INTEGER},
+        </if>
+        <if test="movImage!=null and movImage!=''">
+            mov_image = #{movImage,jdbcType=VARCHAR},
+        </if>
+        <if test="movPhotos!=null and movPhotos!=''">
+            mov_photos = #{movPhotos,jdbcType=VARCHAR},
+        </if>
+        <if test="movArea!=null and movArea!=''">
+            mov_area = #{movArea,jdbcType=VARCHAR},
+        </if>
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where mov_id = #{movId,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select mov_id, mov_name, mov_description, mov_type, mov_status, mov_last_time, mov_director, 
     mov_core, mov_release_time, mov_actor, mov_is_come, mov_is_hot, mov_image, mov_photos, 
     mov_area, creat_time, update_time
     from movie
     where mov_id = #{movId,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
+    <select id="selectAll" resultMap="BaseResultMap">
     select mov_id, mov_name, mov_description, mov_type, mov_status, mov_last_time, mov_director, 
     mov_core, mov_release_time, mov_actor, mov_is_come, mov_is_hot, mov_image, mov_photos, 
     mov_area, creat_time, update_time
     from movie
   </select>
-  
-  <!-- 自定义sql -->
-  <!-- 查找正在热映-->
-  <select id="selectMovieByHot" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+
+    <!-- 自定义sql -->
+    <!-- 查找正在热映-->
+    <select id="selectMovieByHot" parameterType="java.lang.Integer" resultMap="BaseResultMap">
   	select * from movie where mov_is_hot = #{status}
   </select>
-  
-  <!-- 查找即将上映-->
-  <select id="selectMovieByCome" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+
+    <!-- 查找即将上映-->
+    <select id="selectMovieByCome" parameterType="java.lang.Integer" resultMap="BaseResultMap">
   	select * from movie where mov_is_come = #{status}
   </select>
 
-  
-  <!-- 根据电影名称搜索电影(需要 电影名称) -->
-  <select id="selectMovieByMov_name" parameterType="java.lang.String" resultMap="BaseResultMap">
-  	select * from movie where mov_name like concat('%',#{mov_name,jdbcType=VARCHAR},'%')
-  </select>
-  
-  <!--  根据地区筛选电影(需要 地区) -->
-  <select id="selectMovieByMov_area" parameterType="java.lang.String" resultMap="BaseResultMap">
+
+    <!-- 根据电影名称搜索电影(需要 电影名称) -->
+    <select id="selectMovieByMov_name" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from movie
+        <if test="mov_name!=null">
+            where mov_name like concat('%',#{mov_name,jdbcType=VARCHAR},'%')
+        </if>
+
+    </select>
+
+    <!--  根据地区筛选电影(需要 地区) -->
+    <select id="selectMovieByMov_area" parameterType="java.lang.String" resultMap="BaseResultMap">
   	select * from movie where mov_area = #{mov_area}
   </select>
-  
-  <!-- 根据电影院查询所有的电影 -->
-  <select id="selectMovieByCinema" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+
+    <!-- 根据电影院查询所有的电影 -->
+    <select id="selectMovieByCinema" parameterType="java.lang.Integer" resultMap="BaseResultMap">
   	select m.* from movie m,dictionary d where d.cine_id = #{cine_id} and m.mov_id = d.mov_id GROUP BY m.mov_id
   </select>
 
-  
+
 </mapper>

@@ -5,8 +5,10 @@ import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import pojo.entity.Cinema;
 import pojo.entity.Movie;
 import service.MovieService;
 import util.GetFileUrl;
@@ -17,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/admin/movie")
@@ -29,12 +32,12 @@ public class MovieAdminController {
     @GetMapping("/selectAllMovies.do")
     @ApiOperation(value = "查询所有的电影信息")
     public PageInfo<Movie> selectAllMovies(@ApiParam(value = "页码") @RequestParam(defaultValue = "1") int pageNumber,
-                                           @ApiParam(value = "页面数据大小") @RequestParam(defaultValue = "0") int pageSize) {
+                                           @ApiParam(value = "页面数据大小") @RequestParam(defaultValue = "0") int pageSize,
+                                           @RequestParam(defaultValue = "",required = false) String movName) {
 
+        PageInfo<Movie> pageInfo = PageHelper.startPage(pageNumber, pageSize)
+                .doSelectPageInfo(() -> movieService.selectMovieByMov_name(movName));
 
-        PageHelper.startPage(pageNumber, pageSize);
-        List<Movie> movieList = movieService.selectAllMovies(pageNumber, pageSize);
-        PageInfo<Movie> pageInfo = new PageInfo<>(movieList);
         return pageInfo;
     }
 
