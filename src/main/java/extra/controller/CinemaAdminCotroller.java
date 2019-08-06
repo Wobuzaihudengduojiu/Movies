@@ -1,8 +1,8 @@
 package extra.controller;
 
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -12,6 +12,8 @@ import pojo.entity.Cinema;
 import service.CinemaService;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @Slf4j
@@ -39,15 +41,24 @@ public class CinemaAdminCotroller {
     }
 
     @ApiOperation("查询所有影院")
-    @GetMapping("/select/{pageSize}-{pageIndex}.json")
-    public Page<Cinema> selectAllCinemas(
+    @GetMapping("/select/{pageSize}/{pageIndex}")
+    public PageInfo<Cinema> selectAllCinemas(
             @PathVariable(value = "pageSize") int pageSize,
-            @PathVariable(value = "pageIndex") int pageIndex
-    ) {
+            @PathVariable(value = "pageIndex") int pageIndex,
+            @RequestParam(defaultValue = "") String name) {
 
-        return PageHelper.startPage(pageSize, pageIndex)
-                .doSelectPage(() -> cinemaService.selectAllCinema());
+        PageInfo<Cinema> pageInfo = PageHelper.startPage(pageIndex, pageSize)
+                .doSelectPageInfo(() -> cinemaService.selectAllCinema());
+        if (!name.equals("")) {
+            List<Cinema> list = pageInfo.getList()
+                    .stream()
+                    .filter(e -> e.getCineName().contains(name))
+                    .collect(Collectors.toList());
+            pageInfo.setList(list);
+        }
+        return pageInfo;
     }
 
 
 }
+
