@@ -36,6 +36,20 @@ public class MovieAdminController {
         return pageInfo;
     }
 
+
+    @ApiOperation(value = "根据电影名称搜索电影(需要 电影名称)")
+    @GetMapping("/select/{pageSize}/{pageIndex}")
+    public PageInfo<Movie> selectMovieByMov_name(
+            @ApiParam(value = "电影名字  movName") @RequestParam(name = "movName") String mov_name,
+            @PathVariable("pageIndex") int pageIndex,
+            @PathVariable("pageSize") int pageSize) {
+
+        return PageHelper.startPage(pageIndex, pageSize)
+                .doSelectPageInfo(() -> movieService.selectMovieByMov_name(mov_name));
+
+    }
+
+
     @ApiOperation(value = "添加电影")
     @PostMapping(value = "/insertMovie.do")
     public Boolean insertMovie(
@@ -72,7 +86,7 @@ public class MovieAdminController {
     @PostMapping("/updateMovieInfo.do")
     @ApiOperation(value = "修改电影信息")
     public Boolean updateupdateMovieInfo(
-            @RequestParam("movId") @ApiParam(value = "电影id movId")int movId,
+            @RequestParam("movId") @ApiParam(value = "电影id movId") int movId,
             @RequestParam("movName") @ApiParam(value = "电影名称") String movName,
             @RequestParam("movDescription") @ApiParam(value = "描述") String movDescription,
             @RequestParam("movType") @ApiParam(value = "类型") String movType,
@@ -94,18 +108,18 @@ public class MovieAdminController {
         String rootpath = request.getServletContext().getRealPath("") + "moviesImg\\" + movName + "\\";
         String movImage = rootpath + imagefile.getOriginalFilename();
         File movImageFile = new File(rootpath);
-        if(movImageFile.exists()&&movImageFile.isDirectory()) {
+        if (movImageFile.exists() && movImageFile.isDirectory()) {
             System.out.println("电影图片文件夹存在！");
             directory = true;
         }
-        movImageFile = new File(rootpath+imagefile.getOriginalFilename());
+        movImageFile = new File(rootpath + imagefile.getOriginalFilename());
         //判断海报的图片文件是否存在如果不存在则创建
         if (directory) {//判断文件目录的存在
             if (!movImageFile.isDirectory()) {//判断文件的存在性
                 imagefile.transferTo(new File(rootpath + imagefile.getOriginalFilename()));
                 System.out.println("创建海报文件成功！");
             }
-        }else{
+        } else {
             System.out.println("海报文件夹不存在！");
             File file2 = new File(rootpath);
             file2.mkdirs();
@@ -115,12 +129,12 @@ public class MovieAdminController {
         }
         //判断剧照的图片文件是否存在如果不存在则创建
         StringBuffer movPhotosBuffer = new StringBuffer();
-        for(MultipartFile photosfile : photosfiles) {
-            File file = new File(rootpath+photosfile.getOriginalFilename());
+        for (MultipartFile photosfile : photosfiles) {
+            File file = new File(rootpath + photosfile.getOriginalFilename());
             if (directory) {//判断文件目录的存在
                 photosfile.transferTo(new File(rootpath + photosfile.getOriginalFilename()));
                 System.out.println("创建剧照文件成功！");
-            }else{
+            } else {
                 System.out.println("剧照文件夹不存在！");
                 File file2 = new File(rootpath);
                 file2.mkdirs();
@@ -128,12 +142,12 @@ public class MovieAdminController {
                 photosfile.transferTo(new File(rootpath + photosfile.getOriginalFilename()));
                 System.out.println("剧照文件不存在，创建剧照文件成功！");
             }
-            movPhotosBuffer = movPhotosBuffer.append(rootpath + photosfile.getOriginalFilename()+" ");
+            movPhotosBuffer = movPhotosBuffer.append(rootpath + photosfile.getOriginalFilename() + " ");
         }
         String movPhotos = movPhotosBuffer.toString();
         Movie movie = new Movie(movId, movName, movDescription, movType, movStatus,
                 movLastTime, movDirector, movCore, movReleaseTime, movActor,
                 movIsCome, movIsHot, movImage, movPhotos, movArea, null, null);
         return movieService.updateMovieInfo(movie);
-        }
+    }
 }
