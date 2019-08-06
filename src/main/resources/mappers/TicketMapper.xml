@@ -85,7 +85,7 @@
             #{p.tkId,jdbcType=INTEGER}, #{p.tkStatus,jdbcType=INTEGER}, #{p.dictSeat,jdbcType=VARCHAR},
             #{p.dictHall,jdbcType=VARCHAR}, #{p.dictStartTime,jdbcType=TIMESTAMP}, #{p.dickEndTime,jdbcType=TIMESTAMP},
             #{p.cineAddress,jdbcType=VARCHAR}, #{p.userId,jdbcType=INTEGER}, #{p.movId,jdbcType=INTEGER},
-            dict_id = #{p.dictId,jdbcType=INTEGER}
+            #{p.dictId,jdbcType=INTEGER}
             )
 
         </foreach>
