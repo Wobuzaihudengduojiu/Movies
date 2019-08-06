@@ -28,13 +28,18 @@ public class MovieAdminController {
 
     @GetMapping("/selectAllMovies.do")
     @ApiOperation(value = "查询所有的电影信息")
-    public PageInfo<Movie> selectAllMovies(@ApiParam(value = "页码") @RequestParam("pageNumber") int pageNumber,
-                                           @ApiParam(value = "页面数据大小") @RequestParam("pageSize") int pageSize) {
+    public PageInfo<Movie> selectAllMovies(@ApiParam(value = "页码") @RequestParam(defaultValue = "1") int pageNumber,
+                                           @ApiParam(value = "页面数据大小") @RequestParam(defaultValue = "0") int pageSize) {
+
+
         PageHelper.startPage(pageNumber, pageSize);
         List<Movie> movieList = movieService.selectAllMovies(pageNumber, pageSize);
         PageInfo<Movie> pageInfo = new PageInfo<>(movieList);
         return pageInfo;
     }
+
+
+
 
     @ApiOperation(value = "添加电影")
     @PostMapping(value = "/insertMovie.do")
