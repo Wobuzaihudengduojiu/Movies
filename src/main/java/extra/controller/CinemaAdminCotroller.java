@@ -45,7 +45,7 @@ public class CinemaAdminCotroller {
     public PageInfo<Cinema> selectAllCinemas(
             @PathVariable(value = "pageSize") int pageSize,
             @PathVariable(value = "pageIndex") int pageIndex,
-            @RequestParam(defaultValue = "") String name) {
+            @RequestParam(defaultValue = "",required = false) String name) {
 
         PageInfo<Cinema> pageInfo = PageHelper.startPage(pageIndex, pageSize)
                 .doSelectPageInfo(() -> cinemaService.selectAllCinema());
