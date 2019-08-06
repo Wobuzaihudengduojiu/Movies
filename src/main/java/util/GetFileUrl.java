@@ -8,13 +8,19 @@ import java.io.IOException;
 
 public class GetFileUrl {
     public static String get(MultipartFile file, String movName, HttpServletRequest request) throws IOException {
-        String rootpath = request.getServletContext().getRealPath("")+"moviesImg\\"+movName+"\\";
+        StringBuffer url = request.getRequestURL();
+        String rootpathDatabase =url.delete(url.length() - request.getRequestURI().length(), url.length())
+                .append(request.getServletContext().getContextPath())
+                .append("/moviesImg/"+movName+"/")
+                .toString();
+
+        String rootpath =request.getServletContext().getRealPath("/static/")+"moviesImg/"+movName+"/";
         File folder = new File(rootpath);
         if (!folder.exists() && !folder.isDirectory()) {
             folder.mkdirs();
             System.out.println("创建文件夹");
         }
-        String result = rootpath+file.getOriginalFilename();
+        String result = rootpathDatabase+file.getOriginalFilename();
         file.transferTo(new File(rootpath+file.getOriginalFilename()));
         return result;
     }

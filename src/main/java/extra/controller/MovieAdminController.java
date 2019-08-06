@@ -91,8 +91,13 @@ public class MovieAdminController {
     ) throws IOException {
         //电影图片文件夹是否存在
         Boolean directory = false;
-        String rootpath = request.getServletContext().getRealPath("") + "moviesImg\\" + movName + "\\";
-        String movImage = rootpath + imagefile.getOriginalFilename();
+        StringBuffer url = request.getRequestURL();
+        String rootpathDatabase =url.delete(url.length() - request.getRequestURI().length(), url.length())
+                .append(request.getServletContext().getContextPath())
+                .append("/moviesImg/"+movName+"/")
+                .toString();
+        String rootpath = request.getServletContext().getRealPath("/static/") + "moviesImg/" + movName + "/";
+        String movImage = rootpathDatabase + imagefile.getOriginalFilename();
         File movImageFile = new File(rootpath);
         if(movImageFile.exists()&&movImageFile.isDirectory()) {
             System.out.println("电影图片文件夹存在！");
@@ -128,7 +133,7 @@ public class MovieAdminController {
                 photosfile.transferTo(new File(rootpath + photosfile.getOriginalFilename()));
                 System.out.println("剧照文件不存在，创建剧照文件成功！");
             }
-            movPhotosBuffer = movPhotosBuffer.append(rootpath + photosfile.getOriginalFilename()+" ");
+            movPhotosBuffer = movPhotosBuffer.append(rootpathDatabase + photosfile.getOriginalFilename()+" ");
         }
         String movPhotos = movPhotosBuffer.toString();
         Movie movie = new Movie(movId, movName, movDescription, movType, movStatus,
